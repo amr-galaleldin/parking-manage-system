@@ -2,13 +2,10 @@ import cv2
 import numpy as np
 import pickle
 from flask import Flask
-# from flask_socketio import SocketIO
-
+from flask_socketio import SocketIO
 
 
 rectW,rectH=107,48
-
-
 
 def check(imgPro,posList):
     spaceCount=0
@@ -32,15 +29,16 @@ def check(imgPro,posList):
 
 def predict():
  cap=cv2.VideoCapture('new1.mp4')
+ cap.set(cv2.CAP_PROP_POS_FRAMES, 300)
  posList=0
  with open('carParkPos','rb') as f:
     posList=pickle.load(f)
  frame_counter = 0
  for i in range(1):
     _,img=cap.read()
-    if frame_counter == cap.get(cv2.CAP_PROP_FRAME_COUNT):
-        frame_counter = 0 #Or whatever as long as it is the same as next line
-        cap.set(cv2.cv.CV_CAP_PROP_POS_FRAMES, 0)
+    # if frame_counter == cap.get(cv2.CAP_PROP_FRAME_COUNT):
+    #     frame_counter = 0 #Or whatever as long as it is the same as next line
+    #     cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
     gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     blur=cv2.GaussianBlur(gray,(3,3),1)
     Thre=cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,25,16)
@@ -67,4 +65,12 @@ def emotion():
 
 if __name__ == '__main__':
    
-    app.run()
+    app.run(port=5000,debug=True)
+ 
+
+ #frames test:
+
+    # 230->     12
+    # 300-?     11
+    # 1:104->    6
+    # 105:200->  7
