@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import pickle
 from flask import Flask
-from flask_socketio import SocketIO
+# from flask_socketio import SocketIO
 
 
 
@@ -10,7 +10,7 @@ rectW,rectH=107,48
 
 
 
-def check(imgPro,img,posList):
+def check(imgPro,posList):
     spaceCount=0
     for pos in posList:
         x,y=pos
@@ -18,15 +18,15 @@ def check(imgPro,img,posList):
         count=cv2.countNonZero(crop)
         if count<900:
             spaceCount+=1
-            color=(0,255,0)
-            thick=5
-        else:
-            color=(0,0,255)
-            thick=2
+        #     color=(0,255,0)
+        #     thick=5
+        # else:
+        #     color=(0,0,255)
+        #     thick=2
 
-        cv2.rectangle(img,pos,(x+rectW,y+rectH),color,thick)
-    cv2.rectangle(img,(45,30),(250,75),(180,0,180),-1)
-    cv2.putText(img,f'Free: {spaceCount}/{len(posList)}',(50,60),cv2.FONT_HERSHEY_SIMPLEX,0.9,(255,255,255),2)
+    #     cv2.rectangle(img,pos,(x+rectW,y+rectH),color,thick)
+    # cv2.rectangle(img,(45,30),(250,75),(180,0,180),-1)
+    # cv2.putText(img,f'Free: {spaceCount}/{len(posList)}',(50,60),cv2.FONT_HERSHEY_SIMPLEX,0.9,(255,255,255),2)
     return {'capacity':len(posList),'busy':spaceCount}
 
 
@@ -47,10 +47,10 @@ def predict():
     blur=cv2.medianBlur(Thre,5)
     kernel=np.ones((3,3),np.uint8)
     dilate=cv2.dilate(blur,kernel,iterations=1)
-    predictt= check(imgPro=dilate,img=img,posList=posList)
+    predictt= check(imgPro=dilate,posList=posList)
 
-    cv2.imshow("Image",img)
-    cv2.waitKey(10)
+    # cv2.imshow("Image",img)
+    # cv2.waitKey(10)
 
  return predictt
 
