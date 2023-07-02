@@ -5,7 +5,10 @@ from flask import Flask
 from flask_socketio import SocketIO
 
 
+
 rectW,rectH=107,48
+
+
 
 def check(imgPro,posList):
     spaceCount=0
@@ -29,7 +32,7 @@ def check(imgPro,posList):
 
 def predict():
  cap=cv2.VideoCapture('new1.mp4')
- cap.set(cv2.CAP_PROP_POS_FRAMES, 300)
+ cap.set(cv2.CAP_PROP_POS_FRAMES, 150)
  posList=0
  with open('carParkPos','rb') as f:
     posList=pickle.load(f)
@@ -54,18 +57,20 @@ def predict():
 
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 
-@app.route('/parking')
-def emotion():
+# @app.route('/parking')
+# def emotion():
 
-  return predict()
+#   return predict()
 
 
 if __name__ == '__main__':
+
+    print(predict())
    
-    app.run(port=5000,debug=True)
+    # app.run(port=5000,debug=True)
  
 
  #frames test:
