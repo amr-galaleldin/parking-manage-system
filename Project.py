@@ -112,7 +112,8 @@ def on_connect():
 def emotion():
   if  request.method=="POST":
 
-   return predict(1)
+   # return predict(1)
+      return "hello world"
 
 
 
