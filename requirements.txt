@@ -4,3 +4,4 @@ app
 numpy
 opencv-python
 flask_socketio
+eventlet
