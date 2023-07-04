@@ -1,6 +1,6 @@
 flask
 flask-socketio
 eventlet==0.33.3
-Werkzeug==2.3.4
+Werkzeug==2.2.3
 opencv-python
 numpy
