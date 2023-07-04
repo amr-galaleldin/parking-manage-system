@@ -43,7 +43,7 @@ def predict(num):
             kernel = np.ones((3, 3), np.uint8)
             dilate = cv2.dilate(blur, kernel, iterations=1)
             predictt = check(imgPro=dilate, posList=posList)
-            socketio.emit('predict', predictt)
+            socketio.emit('predict',{"predictt":"cat"} )
             gevent.sleep(0)
             frame_counter+=1
     else:
@@ -74,7 +74,8 @@ def on_connect():
 
 @app.route('/parking', methods=["GET"])
 def parking():
-    return predict(1)
+    # return predict(1)
+    return "hello world"
 
 if __name__ == '__main__':
     socketio.run(app,port=5000)
