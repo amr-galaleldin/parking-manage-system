@@ -4,3 +4,4 @@ flask-socketio
 gevent
 opencv-python-headless
 numpy
+gevent-websocket
