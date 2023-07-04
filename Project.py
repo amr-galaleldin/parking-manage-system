@@ -37,7 +37,7 @@ def check(imgPro,posList):
 def predict(num):
  
   cap=cv2.VideoCapture('new1.mp4')
-#   cap.set(cv2.CAP_PROP_POS_FRAMES, 300)
+#   cap.set(cv2.CAP_PROP_POS_FRAMESو0)
   posList=0
   with open('carParkPos','rb') as f:
     posList=pickle.load(f)
@@ -63,7 +63,7 @@ def predict(num):
 
     eventlet.sleep(0)
    
-    socketio.emit('predict',{"predictt":5} )
+    socketio.emit('predict', predictt)
   else :
       for i in range(1):
        _,img=cap.read()
@@ -110,15 +110,14 @@ def on_connect():
 
 
 def emotion():
-  if  request.method=="POST":
+  if  request.method=="GET":
 
-   # return predict(1)
-      return "hello world"
+   return predict(1)
 
 
 
 if __name__ == '__main__':
-    socketio.run(app,debug=True)
+    socketio.run(app,port=5000,debug=True)
 
 
 
