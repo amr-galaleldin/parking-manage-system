@@ -63,7 +63,7 @@ def predict(num):
 
     eventlet.sleep(0)
    
-    socketio.emit('predict', predictt)
+    socketio.emit('predict',{"predictt":5} )
   else :
       for i in range(1):
        _,img=cap.read()
