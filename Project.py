@@ -61,7 +61,7 @@ def predict(num):
         return predictt
 
 app = Flask(__name__)
-socketio = SocketIO(app, async_mode='gevent')
+socketio = SocketIO(app, message_queue='redis://', async_mode='gevent')
 
 
 
