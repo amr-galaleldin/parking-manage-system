@@ -78,4 +78,4 @@ def parking():
     return "hello world"
 
 if __name__ == '__main__':
-    socketio.run(app,port=5000)
+    socketio.run(app)
