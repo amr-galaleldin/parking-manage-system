@@ -5,3 +5,4 @@ gevent
 opencv-python-headless
 numpy
 gevent-websocket
+redis
