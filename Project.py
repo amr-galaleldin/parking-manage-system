@@ -34,7 +34,7 @@ def predict():
             kernel = np.ones((3, 3), np.uint8)
             dilate = cv2.dilate(blur, kernel, iterations=1)
             predictt = check(imgPro=dilate, posList=posList)
-    return predictt
+    return "ااااااااااااااااااااااااااhelllo"
 
 
 
